@@ -32,11 +32,17 @@
         </div>
         <div class="main__controls">
           <div class="main__controls__block">
-            <div class="main_controls_button">
+            <div
+              onClick="muteUnmute()"
+              class="main_controls_button main__mute_button"
+            >
               <i class="fas fa-microphone"></i>
               <span>Mute</span>
             </div>
-            <div class="main_controls_button">
+            <div
+              onClick="stopStartVideo()"
+              class="main_controls_button main__stop_video_button"
+            >
               <i class="fas fa-video"></i>
               <span>Stop Video</span>
             </div>
