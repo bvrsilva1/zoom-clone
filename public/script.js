@@ -32,6 +32,20 @@ navigator.mediaDevices
     socket.on('user-connected', (userId) => {
       connectToNewUser(userId, stream)
     })
+
+    let message = $('input')
+
+    $('html').keydown((e) => {
+      if (e.which === 13 && message.val().length !== 0) {
+        socket.emit('message', message.val())
+        message.val('')
+      }
+    })
+
+    socket.on('createMessage', (message) => {
+      $('ul').append(`<li class='message'><b>user</b><br/>${message}</li>`)
+      scrollToBottom()
+    })
   })
 
 peer.on('open', (id) => {
@@ -54,4 +68,9 @@ const addVideoStream = (video, stream) => {
     video.play()
   })
   videoGrid.append(video)
+}
+
+const scrollToBottom = () => {
+  let chatWindow = $('.main__chat_window')
+  chatWindow.scrollTop(chatWindow.prop('scrollHeight'))
 }
